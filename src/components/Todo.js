@@ -1,14 +1,18 @@
 import React from "react";
 
 const Todo = props => {
-    const handleClick = () => {
+    const handleTextClick = () => {
         props.dispatch({type: "toggleCompleted", idx: props.idx});
     }
 
-    console.log(props.val.item);
+    const handleDeleteButtonClick = e => {
+        e.stopPropagation();
+        props.dispatch({type: "removeItem", idx: props.idx})
+    }
 
     return (
-        <p onClick={() => handleClick()} style={{textDecoration: props.val.completed ? "line-through" : "none" }}>
+        <p onClick={() => handleTextClick()} style={{textDecoration: props.val.completed ? "line-through" : "none" }}>
+            <button onClick={e => handleDeleteButtonClick(e)}>x&nbsp;&nbsp;&nbsp;</button>
             {props.val.item}
         </p>
     )

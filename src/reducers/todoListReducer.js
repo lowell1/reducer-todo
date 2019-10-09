@@ -9,6 +9,7 @@ export function todoListReducer(state, action) {
 
     if(action.type === "removeItem") {
         const stateCopy = [...state];
+        console.log("todoListReducer", action.idx);
         stateCopy.splice(action.idx, 1);
         return stateCopy;
     }
